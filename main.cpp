@@ -11,10 +11,18 @@
 #include <algorithm>
 #include <sstream>
 
-void dump(std::ranges::viewable_range auto&& r) {
+void dump(std::ranges::viewable_range auto&& r, std::ostream& out = std::cout, char* delim = "\n") {
     using R = decltype(r);
     using T = typename std::ranges::iterator_t<R>::value_type;
-    std::copy(std::ranges::begin(r), std::ranges::end(r), std::ostream_iterator<T>(std::cout, "\n"));
+    std::copy(std::ranges::begin(r), std::ranges::end(r), std::ostream_iterator<T>(out, delim));
+}
+
+std::string pr_str(std::ranges::viewable_range auto&& r) {
+    std::stringstream ss;
+    ss << "[";
+    dump(r, ss, ",");
+    ss << "]";
+    return ss.str();
 }
 
 void fail(const std::string& msg){
@@ -71,24 +79,6 @@ int sum(const std::vector<int>& v) {
     return std::accumulate(std::begin(v), std::end(v), 0);
 }
 
-/*
-template<class InputIt>
-std::vector<std::vector<typename std::iterator_traits<InputIt>::value_type>> partitionB(InputIt begin, InputIt end, int n) {
-    using ValueType = typename std::iterator_traits<InputIt>::value_type;
-    std::vector<std::vector<ValueType>> result{};
-    while ((begin + (n-1)) != end) {
-        result.emplace_back(begin, begin+n);
-        begin++;
-    }
-    return result;
-}
-
-template<std::ranges::viewable_range R>
-auto partition(R&& r, int n) {
-    return partitionB(std::ranges::begin(r), std::ranges::end(r), n);
-}
- */
-
 auto partition(std::ranges::viewable_range auto&& r, int n) {
     using R = decltype(r);
     using T = typename std::ranges::iterator_t<R>::value_type;
@@ -124,6 +114,8 @@ int day1() {
     std::cout << "count is " << count << "\n";
 
     auto parts = partition(ints, 3);
+
+    dump(parts | std::views::transform([](auto& r) { return pr_str(r); }));
 
     auto windowCount = count_incrementing(parts | std::views::transform(sum) );
 
@@ -188,6 +180,7 @@ int day2() {
     });
 
     std::cout << " final sub position: " << sstate.pos << " = " << (sstate.pos.position * sstate.pos.depth) << "\n";
+    return 0;
 }
 
 std::pair<int,int> count_bit(std::vector<int> ints, int bit) {
@@ -225,6 +218,7 @@ int day3() {
     unsigned int gamma = calculate_gamma(v);
     unsigned int epsilon = (~gamma & 0b111111111111);
     std::cout << " Gamma = " << gamma << " Epsilon = " << epsilon << " - (" << gamma*epsilon << ")\n";
+    return 0;
 }
 
 int main() {
