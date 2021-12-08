@@ -198,7 +198,7 @@ int day2() {
     return 0;
 }
 
-std::pair<int,int> count_bit(std::vector<int> ints, int bit) {
+std::pair<int,int> count_bit(const std::vector<int>& ints, int bit) {
     std::pair<int,int> result {};
     int v = 1 << bit;
     for (int i: ints) {
@@ -382,7 +382,7 @@ struct BingoGame {
         return 0;
     }
 
-    bool done() { return move_idx == moves.size(); }
+    bool done() const { return move_idx == moves.size(); }
 
     void play() {
         while (!done()) {
@@ -396,7 +396,6 @@ struct BingoGame {
         }
 
         std::cout << " no board wins" << "\n";
-        return;
     }
 };
 
@@ -415,9 +414,9 @@ BingoGame parse_bingo_game(const std::string& name) {
         auto ints = moves | std::views::transform(to_int);
 
 
+        std::vector<std::pair<int,bool>> spots;
+        spots.reserve(25);
         while (f.good()) {
-            std::vector<std::pair<int,bool>> spots;
-            spots.reserve(25);
             for (int i = 0; i < 25; i++) {
                 int mv;
                 f >> mv;
@@ -428,6 +427,7 @@ BingoGame parse_bingo_game(const std::string& name) {
             }
 
             boards.emplace_back(board++, spots);
+            spots.clear();
         }
 
         return BingoGame{std::vector<int>(std::ranges::begin(ints), std::ranges::end(ints)), 0, std::move(boards)};
