@@ -18,6 +18,11 @@ void dump(std::ranges::viewable_range auto&& r, std::ostream& out = std::cout, c
     std::copy(std::ranges::begin(r), std::ranges::end(r), std::ostream_iterator<T>(out, delim));
 }
 
+template <std::ranges::viewable_range R, typename T = typename std::ranges::iterator_t<R>::value_type>
+std::vector<T> to_vec(const R& r) {
+    return std::vector<T>(std::ranges::begin(r), std::ranges::end(r));
+}
+
 std::string pr_str(std::ranges::viewable_range auto&& r) {
     std::stringstream ss;
     ss << "[";
@@ -588,7 +593,7 @@ std::vector<Line> parse_day5(const std::string& name) {
 }
 
 void day5() {
-    auto lines = parse_day5(("day5.txt"));
+    auto lines = parse_day5("day5.txt");
     auto max = calculate_diagram_size(lines);
     std::cout << "diagram size: " << max << "\n";
 
@@ -608,9 +613,37 @@ void day5() {
     std::cout << "score is " << count << "\n";
 }
 
+// day 6
+
+void day6() {
+    auto input = split_char(slurp("day6.txt")[0], ',');
+    auto ints = input | std::views::transform(to_int);
+    auto lionfish = to_vec(ints);
+
+    dump(lionfish);
+
+    for (auto day: std::views::iota(0, 80)) {
+        int new_fish = 0;
+        for (auto& c: lionfish) {
+            if (c == 0) {
+                new_fish++;
+                c = 6;
+            } else {
+                c--;
+            }
+        }
+        while (new_fish) {
+            lionfish.push_back(8);
+            new_fish--;
+        }
+    }
+
+    std::cout << "lionfish: " << lionfish.size() << "\n";
+}
+
 int main() {
     try {
-        day5();
+        day6();
     } catch (std::exception& e) {
         std::cout << "fail: " << e.what() <<"\n";
     }
