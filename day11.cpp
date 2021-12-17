@@ -16,7 +16,6 @@ namespace day11 {
         int height;
         int round;
         int total_flashes;
-        int first_all_flash;
 
         Map(int w, int h) : octopi(w*h), width(w), height(h), round(0) {}
 
@@ -150,7 +149,5 @@ TEST_CASE("day11", "[aoc2021]") {
     int sync = m.update_until_sync();
 
     REQUIRE(sync == 368);
-
-
 }
 
