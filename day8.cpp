@@ -1,7 +1,3 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #include "util.h"
 
 bool is_unique_seq(const std::string& p) {

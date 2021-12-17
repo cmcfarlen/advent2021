@@ -1,7 +1,3 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #include "util.h"
 
 int dist(int a, int b) {
@@ -31,5 +27,3 @@ TEST_CASE("day7", "[aoc2021]") {
     std::cout << "best position is: " << best.first << " cost " << best.second << "\n";
     REQUIRE(best.second == 101618069);
 }
-
-

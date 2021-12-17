@@ -1,9 +1,4 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #include "util.h"
-
 
 // Day 4: Giant Squid Bingo
 
@@ -175,5 +170,3 @@ TEST_CASE("day4", "[aoc2021]") {
     //std::cout << "Last win: " << game.winners.back().first << " score: " << game.winners.back().second << "\n";
 
 }
-
-

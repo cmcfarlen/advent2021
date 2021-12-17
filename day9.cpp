@@ -1,7 +1,3 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #include "util.h"
 
 struct Map {
@@ -124,4 +120,3 @@ TEST_CASE("day9", "[aoc2021]") {
 
 
 }
-

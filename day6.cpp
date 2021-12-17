@@ -1,7 +1,3 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #include "util.h"
 
 
@@ -35,5 +31,3 @@ TEST_CASE("day6", "[aoc2021]") {
 
     std::cout << "lionfish: " << totalfish << "\n";
 }
-
-

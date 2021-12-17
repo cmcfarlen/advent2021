@@ -1,7 +1,3 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #ifndef AOC2021_UTIL_H
 #define AOC2021_UTIL_H
 

@@ -1,9 +1,4 @@
-//
-// Created by cmcfarlen on 12/15/21.
-//
-
 #include "util.h"
-
 
 std::pair<int,int> count_bit(const std::vector<int>& ints, int bit) {
     std::pair<int,int> result {};
@@ -97,5 +92,3 @@ TEST_CASE("day3", "[aoc2021]") {
     auto rating = o2rating * co2rating;
     REQUIRE(rating == 4406844);
 }
-
-
