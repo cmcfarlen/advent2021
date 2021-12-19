@@ -38,7 +38,7 @@ std::string pr_str(std::ranges::viewable_range auto&& r) {
 
 void fail(const std::string& msg);
 
-std::vector<std::string> slurp(const std::string& name);
+std::vector<std::string> slurp(const std::string& name, bool keep_empty = false);
 
 std::vector<std::string> split_char(const std::string& l, char delim);
 

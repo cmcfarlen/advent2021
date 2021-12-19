@@ -8,7 +8,7 @@ void fail(const std::string& msg){
     throw std::runtime_error(msg.c_str());
 }
 
-std::vector<std::string> slurp(const std::string& name) {
+std::vector<std::string> slurp(const std::string& name, bool keep_empty) {
     std::string path = "../input/" + name;
 
     std::ifstream f(path);
@@ -16,7 +16,7 @@ std::vector<std::string> slurp(const std::string& name) {
     if (f.is_open()) {
         std::string line;
         while (std::getline(f, line)) {
-            if (!line.empty()) {
+            if (keep_empty || !line.empty()) {
                 result.push_back(line);
             }
         }
