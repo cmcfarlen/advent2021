@@ -8,7 +8,7 @@ set( CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -stdlib=libc++")
 
 find_package(Catch2 REQUIRED)
 
-add_executable(aoc2021 main.cpp day1.cpp day1.cpp util.h util.cpp day2.cpp day3.cpp day4.cpp day5.cpp day6.cpp day7.cpp day8.cpp day9.cpp day10.cpp day11.cpp day12.cpp day13.cpp)
+add_executable(aoc2021 main.cpp day1.cpp day1.cpp util.h util.cpp day2.cpp day3.cpp day4.cpp day5.cpp day6.cpp day7.cpp day8.cpp day9.cpp day10.cpp day11.cpp day12.cpp day13.cpp day14.cpp)
 target_link_libraries(aoc2021 Catch2::Catch2)
 
 include(CTest)

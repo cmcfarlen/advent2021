@@ -1,7 +1,3 @@
-//
-// Created by cmcfarlen on 12/19/21.
-//
-
 #include "util.h"
 
 namespace day13 {

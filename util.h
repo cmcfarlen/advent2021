@@ -16,6 +16,8 @@
 #include <optional>
 
 #include <catch2/catch.hpp>
+#include <unordered_map>
+#include <execution>
 
 void dump(std::ranges::viewable_range auto&& r, std::ostream& out = std::cout, const char* delim = "\n") {
     using R = decltype(r);
@@ -85,6 +87,17 @@ auto count_incrementing(auto&& r) {
     });
 
     return count;
+}
+
+template <std::ranges::viewable_range R, typename T = typename std::ranges::iterator_t<R>::value_type>
+auto frequencies(R&& r) {
+    std::unordered_map<T,std::size_t> result;
+
+    for (const auto& v: r) {
+        result[v]++;
+    }
+
+    return result;
 }
 
 #endif //AOC2021_UTIL_H

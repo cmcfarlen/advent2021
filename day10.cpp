@@ -36,6 +36,7 @@ int score_illegal_char(char x) {
         case '>':
             return 25137;
     }
+    return 0;
 }
 
 int score_complete_char(char x) {
@@ -49,6 +50,7 @@ int score_complete_char(char x) {
         case '>':
             return 4;
     }
+    return 0;
 }
 
 uint64_t score_complete_string(const std::string& s) {
