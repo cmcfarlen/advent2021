@@ -18,6 +18,7 @@
 #include <catch2/catch.hpp>
 #include <unordered_map>
 #include <execution>
+#include <map>
 
 void dump(std::ranges::viewable_range auto&& r, std::ostream& out = std::cout, const char* delim = "\n") {
     using R = decltype(r);
